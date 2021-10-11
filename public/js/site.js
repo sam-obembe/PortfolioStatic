@@ -18,11 +18,11 @@ function toggleDarkMode(isDark) {
 
     if (classes.value === darkModeStyle) {
         updatedClassList = "";
-        updateToggleText("Dark Mode");
+        updateToggleText("fa fa-sun-o");
     }
     else {
         updatedClassList = darkModeStyle;
-        updateToggleText("Light Mode")
+        updateToggleText("fa fa-moon-o")
     }
 
 
@@ -40,5 +40,5 @@ function toggleDarkMode(isDark) {
 
 
 function updateToggleText(text) {
-    document.getElementById("darkModeToggle").innerText = text;
+    document.getElementById("darkModeToggle").classList = text;
 }

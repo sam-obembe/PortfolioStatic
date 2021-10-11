@@ -83,6 +83,10 @@ footer {
     /* Vertically center the text there */
 }
 
+.language-icon-wrapper {
+    text-align: center;
+}
+
 .language-icons {
     font-size: 4rem;
     display: block;
@@ -99,8 +103,14 @@ a.connect-icon-link {
 
 @media screen and (max-width :500px) {
     .language-icons {
-        font-size: 2rem;
+        font-size: 3rem;
+        padding-left: 10%;
+        padding-right: 10%;
     }
+}
+
+.language-icons:hover {
+    scale: 1.2;
 }
 
 .custom-nav-item {
@@ -110,5 +120,3 @@ a.connect-icon-link {
 .about-me-section {
     background-color: rgba(0, 0, 0, 0.02);
 }
-
-@media (prefers-color-scheme: dark) {}

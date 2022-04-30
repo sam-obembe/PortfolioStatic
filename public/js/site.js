@@ -1,44 +1,70 @@
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// for details on configuring this project to bundle and minify static web assets.
+
+// Write your Javascript code.
+
+
+const darkNavbar = "navbar navbar-fixed-top navbar-expand navbar-dark bg-dark";
+const lightNavbar = "navbar navbar-fixed-top navbar-expand navbar-light bg-light";
+
+window.onload = setThemeFromLocalStorage();
 
 document.getElementById("darkModeToggle").addEventListener('click', toggleDarkMode)
 
 let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+
+
 let darkModeStyle = "bg-dark text-white";
 let lightMode = "bg-white";
 
 
 function toggleDarkMode(isDark) {
-    var classes = document.body.classList;
-    let navbar = document.getElementsByTagName("nav")[0];
-    let navClasses = navbar.classList;
-
-    console.log(navClasses);
-
-    var updatedClassList = "";
-    let updatedNav = "";
-
-    if (classes.value === darkModeStyle) {
-        updatedClassList = "";
-        updateToggleText("fa fa-sun-o");
+    let bodyStyle = document.body.style;
+    let bodyClassList = [...document.body.classList];
+    if (bodyClassList[0] === "midnight") {
+        setTheme("light");
     }
     else {
-        updatedClassList = darkModeStyle;
-        updateToggleText("fa fa-moon-o")
+        setTheme("dark");
     }
 
-
-    if (navClasses.contains("navbar-light")) {
-        updatedNav = navClasses.toString().replace("navbar-light", "navbar-dark").replace("bg-white", "bg-dark");
-        //navClasses.add(darkModeStyle);
-    }
-    else if (navClasses.contains("navbar-dark")) {
-        updatedNav = navClasses.toString().replace("navbar-dark", "navbar-light").replace("bg-dark", "bg-white");
-    }
-
-    document.body.className = updatedClassList;
-    navbar.className = updatedNav;
 }
 
 
 function updateToggleText(text) {
     document.getElementById("darkModeToggle").classList = text;
+}
+
+
+function setTheme(theme) {
+    let bodyClassList = [...document.body.classList];
+    if (theme === "light") {
+        bodyClassList[0] = "daytime";
+        document.getElementsByTagName("nav")[0].classList = lightNavbar;
+        window.localStorage.setItem("themePreference", "light");
+    }
+    else {
+        bodyClassList[0] = "midnight";
+        document.getElementsByTagName("nav")[0].classList = darkNavbar;
+        window.localStorage.setItem("themePreference", "dark");
+    }
+    document.body.classList = bodyClassList;
+}
+
+
+function setThemeFromLocalStorage() {
+    let themePreference = window.localStorage.getItem("themePreference");
+
+    if (themePreference == null || themePreference === undefined) {
+        window.localStorage.setItem("themePreference", "light");
+        setTheme("light");
+    }
+    else if (themePreference === "light") {
+        setTheme("light");
+    }
+    else if (themePreference === "dark") {
+        setTheme("dark");
+    }
+    //console.log(window.localStorage);
 }

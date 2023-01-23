@@ -6,10 +6,13 @@
 
 const darkNavbar = "navbar navbar-fixed-top navbar-expand navbar-dark bg-dark";
 const lightNavbar = "navbar navbar-fixed-top navbar-expand navbar-light bg-light";
+const lightModeIcon = "fa fa-sun-o";
+const darkModeIcon = "fa fa-moon-o";
+const darkModeToggleId = "darkModeToggle";
 
 window.onload = setThemeFromLocalStorage();
 
-document.getElementById("darkModeToggle").addEventListener('click', toggleDarkMode)
+document.getElementById(darkModeToggleId).addEventListener('click', toggleDarkMode)
 
 let isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
@@ -43,11 +46,15 @@ function setTheme(theme) {
         bodyClassList[0] = "daytime";
         document.getElementsByTagName("nav")[0].classList = lightNavbar;
         window.localStorage.setItem("themePreference", "light");
+
+        document.getElementById(darkModeToggleId).classList = darkModeIcon;
     }
     else {
         bodyClassList[0] = "midnight";
         document.getElementsByTagName("nav")[0].classList = darkNavbar;
         window.localStorage.setItem("themePreference", "dark");
+
+        document.getElementById(darkModeToggleId).classList = lightModeIcon;
     }
     document.body.classList = bodyClassList;
 }
@@ -66,5 +73,4 @@ function setThemeFromLocalStorage() {
     else if (themePreference === "dark") {
         setTheme("dark");
     }
-    //console.log(window.localStorage);
 }

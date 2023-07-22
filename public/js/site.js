@@ -1,7 +1,3 @@
-// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your Javascript code.
 
 
 const darkNavbar = "navbar navbar-fixed-top navbar-expand navbar-dark bg-dark";
@@ -22,8 +18,8 @@ let darkModeStyle = "bg-dark text-white";
 let lightMode = "bg-white";
 
 
-function toggleDarkMode(isDark) {
-    let bodyStyle = document.body.style;
+function toggleDarkMode() {
+
     let bodyClassList = [...document.body.classList];
     if (bodyClassList[0] === "midnight") {
         setTheme("light");
@@ -32,11 +28,6 @@ function toggleDarkMode(isDark) {
         setTheme("dark");
     }
 
-}
-
-
-function updateToggleText(text) {
-    document.getElementById("darkModeToggle").classList = text;
 }
 
 
